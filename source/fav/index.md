@@ -7,7 +7,8 @@ date: 2016-07-22 09:47:00
 - [JavaFAQ](http://www.coderanch.com/how-to/search?CategoryFaq)
 - [jooq orm](http://sourceforge.net/projects/jooq/files/)
 - http://www.programcreek.com/
-- http://www.javased.com 
+- http://www.javased.com
+- http://www.mvnrepository.com/ 找jar很方便
 
 ## Eclipse 
 - [eclipse pde tutorial](http://www.vogella.de/)

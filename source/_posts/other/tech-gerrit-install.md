@@ -63,7 +63,6 @@ NameVirtualHost *:80
 <VirtualHost *:80>
 		# 服务器的ip地址
         ServerName 192.168.133.102
-
         ProxyRequests Off
         ProxyVia Off
         ProxyPreserveHost On
@@ -107,83 +106,69 @@ gerrit release包列表：http://gerrit-releases.storage.googleapis.com/index.ht
  ```
  第2行清除用户的密码
 
-2. 安装
+2. 安装 
+
  ```bash
 [root@Centos ~]# java -jar gerrit-2.8.6.1.war init -d gerrit
- ```
+```
+ 
  进入gerrit安装交互过程
  ```apache
     *** Gerrit Code Review 2.8.6.1
     ***
-
     Create '/root/gerrit'          [Y/n]? y
-
     *** Git Repositories
     ***
-
     Location of Git repositories   [git]: ~/git/
-
     *** SQL Database
     ***
-
     Database server type           [h2]:
-
     *** User Authentication
     ***
-
     Authentication method          [OPENID/?]: HTTP
     Get username from custom HTTP header [y/N]? n
     SSO logout URL                 :
-
     *** Email Delivery
     ***
     // Email 
     *** Container Process
     ***
-
     Run as                         [root]:
     Java runtime                   [/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.85-2.6.1.2.el7_1.x86_64/jre]:
     Copy gerrit-2.8.6.1.war to /root/gerrit/bin/gerrit.war [Y/n]? y
     Copying gerrit-2.8.6.1.war to /root/gerrit/bin/gerrit.war
-
     *** SSH Daemon
     ***
-
     Listen on address              [*]:
     Listen on port                 [29418]:
-
     Gerrit Code Review is not shipped with Bouncy Castle Crypto SSL v149
       If available, Gerrit can take advantage of features
       in the library, but will also function without it.
     Download and install it now [Y/n]? y
     Downloading http://www.bouncycastle.org/download/bcpkix-jdk15on-149.jar ... OK
     Checksum bcpkix-jdk15on-149.jar OK
-
     Gerrit Code Review is not shipped with Bouncy Castle Crypto Provider v149
     ** This library is required by Bouncy Castle Crypto SSL v149. **
     Download and install it now [Y/n]? y
     Downloading http://www.bouncycastle.org/download/bcprov-jdk15on-149.jar ... OK
     Checksum bcprov-jdk15on-149.jar OK
     Generating SSH host key ... rsa... dsa... done
-
     *** HTTP Daemon
     ***
-
     Behind reverse proxy           [y/N]? y
     Proxy uses SSL (https://)      [y/N]? n
     Subdirectory on proxy server   [/]: gerrit
     Listen on address              [*]:
     Listen on port                 [8081]:
     Canonical URL                  [http://null]: http://localhost:8081/gerrit/
-
     *** Plugins
     ***
-
     Install plugin download-commands version v2.8.6.1 [y/N]? y
     Install plugin reviewnotes version v2.8.6.1 [y/N]? y
     Install plugin replication version v2.8.6.1 [y/N]? y
     Install plugin commit-message-length-validator version v2.8.6.1 [y/N]? y
  ```
+ 
  建议在第二步 Git Repositories选择独立于gerrit安装目录的一个空目录，不然默认使用gerrit/git/作为git仓库目录。
  然后其它的步骤基本只需默认即可
 
