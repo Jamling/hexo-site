@@ -6,14 +6,14 @@ title2: project.userguide
 ---
 
 ## 引入
-- Android studio 
+- Android studio
 在项目build.gradle中添加以下依赖
 ```gradle
 dependencies {
-    compile 'cn.ieclipse.aorm:aorm-core:1.0'
+    compile 'cn.ieclipse.aorm:aorm-core:1.1.2'
 }
 ```
-- Eclipse 
+- Eclipse
 安装 [Android ADT-extension](https://marketplace.eclipse.org/content/android-adt-extensions) 插件，然后Add ORM capapility
 
 ## 设置
@@ -176,7 +176,3 @@ int rows = session.update(s);
 // delete student whose id is 2
 session.deleteById(Student.class, 2);
 ```
-
-
-
-
