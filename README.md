@@ -19,7 +19,7 @@ $ git clone https://github.com/Jamling/hexo-site
 Initialize
 ```
 $ cd hexo-site
-$ git clone https://github.com/Jamling/themes/hexo-theme-nova ./themes/nova/
+$ git clone https://github.com/Jamling/hexo-theme-nova ./themes/nova/
 $ npm install
 ```
 
