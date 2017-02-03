@@ -9,7 +9,7 @@ title2: project.userguide
 - Android studio
 ```gradle
 dependencies {
-    compile 'cn.ieclipse.aorm:aorm-core:1.0'
+    compile 'cn.ieclipse.aorm:aorm-core:1.1.2'
 }
 ```
 - Eclipse
@@ -35,25 +35,30 @@ public class Student implements java.ioSerializable{
     //...
 }
 ```
+
 ### Add column mapping
 Add @Column annotation for java bean field
+
 - pk (primary key field)
 id is true
 ```java
     @Column(name = "_id", id = true)
     private long id;
 ```
+
 - normal field
+
 ```java
     @Column(name = "_name")
     private String name;
 
-    @Column(name = "_age")
+    @Column()
     private int age;
 ```
+
 - un-mapping field
 No Aorm annotation assigned.
-```
+```java
     private String address;
 ```
 
