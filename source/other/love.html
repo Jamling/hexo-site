@@ -1,0 +1,127 @@
+---
+title: 爱你一萬年
+date: 2016-08-09 12:14:59
+type: love
+description: 送给媳妇的
+share: true
+donate: true
+comments: true
+---
+
+<style>
+.say {
+  min-height: 16px;
+}
+.lover, .author, .festival {
+  color: red;
+  font-weight: bold;
+}
+.years {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+</style>
+<script src="http://jamling.coding.me/birthday-tool/calendar.js"></script>
+<script>
+  // 设置恋爱开始的时间,可以精确到秒
+  var love_date = new Date();
+  love_date.setFullYear(2013, 02, 23); //时间年月日
+  love_date.setHours(20); //小时
+  love_date.setMinutes(11); //分钟
+  love_date.setSeconds(0); //秒前一位
+  love_date.setMilliseconds(0); //秒第二位
+
+  var author = '明月';
+  var lover = '小欣';
+  var festival = '情人节';
+  var birthday = new Date();
+  birthday.setFullYear(1990, 06, 13);
+
+  var today = new Date();
+  // today.setFullYear(2017, 01, 11);
+  var lunar = calendar.solar2lunar(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  console.log(lunar);
+
+  var years = today.getFullYear() - love_date.getFullYear();
+  if (isSpecialDay(birthday)) {
+    festival = '生日';
+  }
+  else if (isSpecialDay(love_date)) {
+    festival = '恋爱周年纪念日';
+  }
+  else if (isSpecialDay(love_date)) {
+    festival = '恋爱周年纪念日';
+  }
+  else if (isSpecialDay2(7,7, true)) {
+    festival = '七夕节';
+  }
+  else if (isSpecialDay2(1,15, true)) {
+    festival = '元宵节(中国情人节)';
+  }
+
+  console.log(festival);
+  function isSpecialDay(day, isLunar){
+    var m = isLunar ?  lunar.lMonth : today.getMonth() + 1;
+    var d = isLunar ? lunar.lDay : today.getDate();
+    if (day.getMonth() == m && day.getDate() == d) {
+      return true;
+    }
+    return false;
+  }
+  function isSpecialDay2(month, day, isLunar) {
+    var m = isLunar ?  lunar.lMonth : today.getMonth() + 1;
+    var d = isLunar ? lunar.lDay : today.getDate();
+    return (m == month && d == day);
+  }
+</script>
+
+
+<div class="container-fluid">
+  <div class="formusic" style="z-index: -99999 !important; height: 0;">
+    <audio
+      style="visibility: hidden; width: 0 !important; height: 0 !important;"
+      autoplay="true" controls="false"
+      src="http://www.soge8.com/1421074091/fb79ec491c73a29655c21d85ad1c9261.mp3">
+      <!-- 背景音乐, 可以替换成自己喜欢的 -->
+    </audio>
+  </div>
+  <div id="main">
+    <div id="error">
+      本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(<a
+        href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI"
+        target="_blank" rel="external">Chrome</a>)或者火狐(<a
+        href="http://firefox.com.cn/download/" target="_blank"
+        rel="external">Firefox</a>)浏览器，或者其他游览器的最新版本。
+    </div>
+    <div id="wrap">
+      <div id="text">
+        <div id="code">
+          <div class="say">献给我挚爱的：<span class="lover">小欣</span></div>
+          <!-- <div class="say"> </div> -->
+          <div class="say"> </div> <div class="say">从我们相识相爱到现在</div>
+          <div class="say"> </div> <div class="say">已经有<span class="years">3</span>年多的时间了</div>
+          <div class="say"> </div> <div class="say">我不曾送你一束鲜花</div>
+          <div class="say"> </div> <div class="say">不代表我不爱你</div>
+          <div class="say"> </div> <div class="say">我将用程序员特有的方式</div>
+          <div class="say"> </div> <div class="say">献上我的祝福</div>
+          <div class="say"> </div> <div class="say"><span class="festival">XX节</span>快乐！</div>
+          <div class="say"> </div> <div class="say">
+          <span class="space"></span> -- <span class="author">明月</span>--</div>
+        </div>
+      </div>
+      <div id="clock-box">
+        <span class="author">明月</span>与<span class="lover">欣有所属</span>已经相恋了
+        <div id="clock"></div>
+      </div>
+      <canvas id="canvas" width="1170" height="680"></canvas>
+    </div>
+  </div>
+<script>
+$('.lover').text(lover);
+$('.author').text(author);
+$('.festival').text(festival);
+$('.years').text(years);
+var title = '祝' + lover + festival + '快乐！';
+document.title = title;
+</script>
