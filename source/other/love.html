@@ -12,13 +12,11 @@ comments: true
 .say {
   min-height: 16px;
 }
-.lover, .author, .festival {
+.lover, .author, .festival, .years {
   color: red;
   font-weight: bold;
 }
 .years {
-  color: red;
-  font-weight: bold;
   font-size: 1.5em;
 }
 </style>
@@ -62,8 +60,8 @@ comments: true
 
   console.log(festival);
   function isSpecialDay(day, isLunar){
-    var m = isLunar ?  lunar.lMonth : today.getMonth() + 1;
-    var d = isLunar ? lunar.lDay : today.getDate();
+    var m = isLunar ?  lunar.lMonth : today.getMonth();
+    var d = isLunar ? lunar.lDay - 1 : today.getDate();
     if (day.getMonth() == m && day.getDate() == d) {
       return true;
     }

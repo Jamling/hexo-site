@@ -6,7 +6,7 @@ layout: false
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>明月伴我欣</title>
+<title>爱你一萬年</title>
 <link type="text/css" rel="stylesheet"
   href="http://zwsssn.u.qiniudn.com/love/default.css">
 <script type="text/javascript"
@@ -28,16 +28,18 @@ layout: false
 <script type="text/javascript"
   src="http://zwsssn.u.qiniudn.com/love/love.js" charset="utf-8"></script>
 <style type="text/css">
-<!--
-.STYLE1 {
-  color: #666666
+.say {
+  min-height: 16px;
 }
-
-#toc {
-  display: none;
+.lover, .author, .festival, .years {
+  color: red;
+  font-weight: bold;
 }
--->
+.years {
+  font-size: 1.5em;
+}
 </style>
+<script src="http://jamling.coding.me/birthday-tool/calendar.js"></script>
 </head>
 <body>
   <div class="formusic" style="z-index: -99999 !important; height: 0;">
@@ -57,23 +59,24 @@ layout: false
     <div id="wrap">
       <div id="text">
         <div id="code">
-          <span class="say">献给我挚爱的小欣</span><br> <span class="say"></span><br>
-          <span class="say"></span><br> <span class="say">欣，从我们相识相爱到现在</span><br>
-          <span class="say"> </span><br> <span class="say">已经有3年多的时间了</span><br>
-          <span class="say"> </span><br> <span class="say">我不曾送你一束鲜花</span><br>
-          <span class="say"> </span><br> <span class="say">不代表我不爱你</span><br>
-          <span class="say"> </span><br> <span class="say">我将用程序员特有的方式</span><br>
-          <span class="say"> </span><br> <span class="say">献上我的祝福</span><br>
-          <span class="say"> </span><br> <span class="say">七夕节快乐！</span><br>
-          <span class="say"> </span><br> <span class="say"><span
-            class="space"></span> -- 明月--</span>
+          <div class="say">献给我挚爱的：<span class="lover">小欣</span></div>
+          <!-- <div class="say"> </div> -->
+          <div class="say"> </div> <div class="say">从我们相识相爱到现在</div>
+          <div class="say"> </div> <div class="say">已经有<span class="years">3</span>年多的时间了</div>
+          <div class="say"> </div> <div class="say">我不曾送你一束鲜花</div>
+          <div class="say"> </div> <div class="say">不代表我不爱你</div>
+          <div class="say"> </div> <div class="say">我将用程序员特有的方式</div>
+          <div class="say"> </div> <div class="say">献上我的祝福</div>
+          <div class="say"> </div> <div class="say"><span class="festival">XX节</span>快乐！</div>
+          <div class="say"> </div> <div class="say">
+          <span class="space"></span> -- <span class="author">明月</span>--</div>
         </div>
       </div>
       <div id="clock-box">
-        明月<span class="STYLE1">与</span>欣有所属<span class="STYLE1">已经相恋了</span>
+        <span class="author">明月</span>与<span class="lover">欣有所属</span>已经相恋了
         <div id="clock"></div>
       </div>
-      <canvas id="canvas" width="1100" height="680"></canvas>
+      <canvas id="canvas" width="1170" height="680"></canvas>
     </div>
 
   </div>
@@ -207,7 +210,7 @@ layout: false
 
         var textAnimate = eval(Jscex.compile("async", function() {
           var together = new Date();
-          together.setFullYear(2013, 03, 23); //时间年月日
+          together.setFullYear(2013, 02, 23); //时间年月日
           together.setHours(20); //小时
           together.setMinutes(11); //分钟
           together.setSeconds(1); //秒前一位
@@ -255,5 +258,64 @@ layout: false
       })();
     </script>
 
+    <script>
+      // 设置恋爱开始的时间,可以精确到秒
+      var love_date = new Date();
+      love_date.setFullYear(2013, 02, 23); //时间年月日
+      love_date.setHours(20); //小时
+      love_date.setMinutes(11); //分钟
+      love_date.setSeconds(0); //秒前一位
+      love_date.setMilliseconds(0); //秒第二位
+
+      var author = '明月';
+      var lover = '小欣';
+      var festival = '情人节';
+      var birthday = new Date();
+      birthday.setFullYear(1990, 06, 13);
+
+      var today = new Date();
+      // today.setFullYear(2017, 01, 11);
+      var lunar = calendar.solar2lunar(today.getFullYear(), today.getMonth() + 1, today.getDate());
+      console.log(lunar);
+
+      var years = today.getFullYear() - love_date.getFullYear();
+      if (isSpecialDay(birthday)) {
+        festival = '生日';
+      }
+      else if (isSpecialDay(love_date)) {
+        festival = '恋爱周年纪念日';
+      }
+      else if (isSpecialDay(love_date)) {
+        festival = '恋爱周年纪念日';
+      }
+      else if (isSpecialDay2(7,7, true)) {
+        festival = '七夕节';
+      }
+      else if (isSpecialDay2(1,15, true)) {
+        festival = '元宵节(中国情人节)';
+      }
+
+      console.log(festival);
+      function isSpecialDay(day, isLunar){
+        var m = isLunar ?  lunar.lMonth : today.getMonth();
+        var d = isLunar ? lunar.lDay - 1 : today.getDate();
+        if (day.getMonth() == m && day.getDate() == d) {
+          return true;
+        }
+        return false;
+      }
+      function isSpecialDay2(month, day, isLunar) {
+        var m = isLunar ?  lunar.lMonth : today.getMonth() + 1;
+        var d = isLunar ? lunar.lDay : today.getDate();
+        return (m == month && d == day);
+      }
+
+      $('.lover').text(lover);
+      $('.author').text(author);
+      $('.festival').text(festival);
+      $('.years').text(years);
+      var title = '祝' + lover + festival + '快乐！';
+      document.title = title;
+    </script>
 </body>
 </html>
