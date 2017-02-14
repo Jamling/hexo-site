@@ -60,8 +60,8 @@ comments: true
 
   console.log(festival);
   function isSpecialDay(day, isLunar){
-    var m = isLunar ?  lunar.lMonth : today.getMonth();
-    var d = isLunar ? lunar.lDay - 1 : today.getDate();
+    var m = isLunar ?  lunar.lMonth - 1 : today.getMonth();
+    var d = isLunar ? lunar.lDay : today.getDate();
     if (day.getMonth() == m && day.getDate() == d) {
       return true;
     }

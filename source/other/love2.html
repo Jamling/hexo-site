@@ -209,12 +209,7 @@ layout: false
         }));
 
         var textAnimate = eval(Jscex.compile("async", function() {
-          var together = new Date();
-          together.setFullYear(2013, 02, 23); //时间年月日
-          together.setHours(20); //小时
-          together.setMinutes(11); //分钟
-          together.setSeconds(1); //秒前一位
-          together.setMilliseconds(1); //秒第二位
+          var together = love_date;
 
           $("#code").show().typewriter();
           $("#clock-box").fadeIn(500);
@@ -239,8 +234,8 @@ layout: false
         }));
 
         function inputPwd(count){
-          var pwd = ['七夕快乐','I love you'];
-          var tip = '送给谁的？';
+          var pwd = ['七夕快乐','I love you', lover, festival];
+          var tip = '送给谁的？今天是什么特殊的日子？';
           var txt = prompt('查看本网页需要密码\n密码提示：' + tip, '');
           if (pwd.indexOf(txt) < 0) {
             alert('密码错误！');
@@ -274,7 +269,7 @@ layout: false
       birthday.setFullYear(1990, 06, 13);
 
       var today = new Date();
-      // today.setFullYear(2017, 01, 11);
+      // today.setFullYear(2017, 02, 23);
       var lunar = calendar.solar2lunar(today.getFullYear(), today.getMonth() + 1, today.getDate());
       console.log(lunar);
 
@@ -297,8 +292,8 @@ layout: false
 
       console.log(festival);
       function isSpecialDay(day, isLunar){
-        var m = isLunar ?  lunar.lMonth : today.getMonth();
-        var d = isLunar ? lunar.lDay - 1 : today.getDate();
+        var m = isLunar ?  lunar.lMonth - 1 : today.getMonth();
+        var d = isLunar ? lunar.lDay : today.getDate();
         if (day.getMonth() == m && day.getDate() == d) {
           return true;
         }
@@ -316,6 +311,16 @@ layout: false
       $('.years').text(years);
       var title = '祝' + lover + festival + '快乐！';
       document.title = title;
+
+      var marqueeCount = 0;
+      function marqueeTitle() {
+        var end = marqueeCount % title.length;
+        document.title = title.substr(0, end) || title;
+        // console.log(document.title);
+        marqueeCount++;
+        setTimeout('marqueeTitle()', 150);
+      }
+      marqueeTitle();
     </script>
 </body>
 </html>
