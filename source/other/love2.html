@@ -6,11 +6,13 @@ layout: false
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>爱你一萬年</title>
-<link type="text/css" rel="stylesheet"
-  href="http://zwsssn.u.qiniudn.com/love/default.css">
-<script type="text/javascript"
-  src="http://zwsssn.u.qiniudn.com/love/jquery.min.js"></script>
+<!-- <link type="text/css" rel="stylesheet"
+  href="http://zwsssn.u.qiniudn.com/love/default.css"> -->
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript"
   src="http://zwsssn.u.qiniudn.com/love/jscex.min.js"></script>
 <script type="text/javascript"
@@ -26,8 +28,24 @@ layout: false
 <script type="text/javascript"
   src="http://zwsssn.u.qiniudn.com/love/functions.js" charset="utf-8"></script>
 <script type="text/javascript"
-  src="http://zwsssn.u.qiniudn.com/love/love.js" charset="utf-8"></script>
+  src="http://ot.ieclipse.cn/js/love.js" charset="utf-8"></script>
+<script type="text/javascript"
+  src="http://ot.ieclipse.cn/js/calendar.js"></script>
+<script type="text/javascript"
+  src="http://ot.ieclipse.cn/js/addon.js" charset="utf-8"></script>
 <style type="text/css">
+body {
+  font-size: 16px;
+}
+#wrap{position:relative;margin:0 auto;margin-top:10px;}
+#code{display:none;font-size:1em;}
+#clock-box {font-size:1em;display:none; margin-bottom: 1em; border-bottom: 4px solid #000}
+#clock-box a {font-size:28px;text-decoration:none;}
+#clock .digit {font-size:1.5em;}
+#error{margin:0 auto;text-align:center;margin-top:60px;display:none;}
+.hand{cursor:pointer;}
+.say{margin-left:5px;}
+.space{margin-right:150px;}
 .say {
   min-height: 16px;
 }
@@ -38,17 +56,54 @@ layout: false
 .years {
   font-size: 1.5em;
 }
+/*
+#canvas {
+  width: 1100px;
+  height: 680px;
+}
+@media (max-width: 767px) {
+  #canvas {
+    width: 360px;
+    height: 240px;
+  }
+}*/
+@media (min-width: 768px) {
+  .container {
+    padding: 0.1em;
+  }
+  #text {
+    position: absolute;
+    top: 20px;
+    z-index: 999;
+  }
+  #clock-box {
+    position:absolute;
+    z-index: 1000;
+    font-size:2em;
+    left:0px;
+    bottom:10px;
+    border-bottom: none;
+  }
+  #clock{margin-left:48px;}
+}
+#love {
+
+}
 </style>
-<script src="http://jamling.coding.me/birthday-tool/calendar.js"></script>
 </head>
 <body>
+
   <div class="formusic" style="z-index: -99999 !important; height: 0;">
     <audio
+      id="bg"
       style="visibility: hidden; width: 0 !important; height: 0 !important;"
-      autoplay="true" controls="false"
-      src="http://www.soge8.com/1421074091/fb79ec491c73a29655c21d85ad1c9261.mp3"></audio>
+      autoplay="true" controls="false">
+      <source id="bgmp3" src="http://olx8kgiw6.bkt.clouddn.com/Valentine_s_Day.mp3" type="audio/mpeg">
+    </audio>
+    <!-- <embed name="MUSIC1" src="http://www.1t2t.com/1t/mid/76.mid" mastersound="" hidden="true" loop="-1" autostart="true">
+    </embed> -->
   </div>
-  <div id="main">
+  <div id="main" class="container">
     <div id="error">
       本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(<a
         href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI"
@@ -56,8 +111,17 @@ layout: false
         href="http://firefox.com.cn/download/" target="_blank"
         rel="external">Firefox</a>)浏览器，或者其他游览器的最新版本。
     </div>
-    <div id="wrap">
-      <div id="text">
+    <div id="wrap" class="row">
+      <div id="love" class="col-xs-12 col-md-12">
+        <canvas id="canvas"></canvas>
+      </div>
+
+      <div id="clock-box" class="col-xs-12">
+        <span class="author">明月</span>与<span class="lover">欣有所属</span>已经相恋了
+        <div id="clock"></div>
+      </div>
+
+      <div id="text" class="col-xs-12 col-md-6">
         <div id="code">
           <div class="say">献给我挚爱的：<span class="lover">小欣</span></div>
           <!-- <div class="say"> </div> -->
@@ -72,17 +136,15 @@ layout: false
           <span class="space"></span> -- <span class="author">明月</span>--</div>
         </div>
       </div>
-      <div id="clock-box">
-        <span class="author">明月</span>与<span class="lover">欣有所属</span>已经相恋了
-        <div id="clock"></div>
+      <div id="screen-detect" class="hidden-xs">
       </div>
-      <canvas id="canvas" width="1170" height="680"></canvas>
     </div>
-
   </div>
 
   <script type="text/javascript">
       (function() {
+        var divLove = $('#love');
+        var divText = $('#text');
         var canvas = $('#canvas');
 
         if (!canvas[0].getContext) {
@@ -90,11 +152,50 @@ layout: false
           return false;
         }
 
-        var width = canvas.width();
-        var height = canvas.height();
+        var smallScreen = $('#screen-detect').css('display') === 'none';
 
+        var width = divLove.width();
+        var height = Math.max(width, canvas.height());
+        if (smallScreen) {
+          height = 400;
+        } else {
+          height = 600;
+        }
+
+        var dayAddon = new DayAddon(calendar, 'Jamling', 'Jasmin', {
+          y: 2013, // 2013年
+          M: 3, // 3 月
+          d: 23,
+          h: 8,
+          m: 10,
+          s: 0
+        });
+        // 每年的7月13日
+        dayAddon.addSpecial('生日', 0, 07, 13);
+        dayAddon.addSpecial('恋爱五周年纪念日', 2018, 03, 23);
+        dayAddon.addSpecial('恋爱周年纪念日', 0, 03, 23);
+        // 每年的阴历七月初七
+        dayAddon.addSpecial('七夕节', 0, 7, 7, true);
+        dayAddon.addSpecial('元宵节(中国情人节)', 0, 1, 15, true);
+        dayAddon.display();
+        // 本人七牛上的歌曲有:天空之城等
+        if (dayAddon.festival === '生日') {
+          $('#bg').attr("src", "http://olx8kgiw6.bkt.clouddn.com/Happy_Birthday.mp3");
+          $('#bg')[0].play();
+        }
+
+        var treeAddon = new TreeAddon(width, height, {
+            maxCount: Math.floor(dayAddon.days / 100),
+            maxLength: smallScreen ? 80 : 100,
+            maxWidth: smallScreen ? 16 : 32,/*
+            bloomWidth: smallScreen ? width - 40 : width,
+            bloomHeight: smallScreen ? height - 40: height - 40,*/
+            bloomRadius: Math.ceil(height/3)
+          }
+        );
         canvas.attr("width", width);
         canvas.attr("height", height);
+        //if (true) return;
 
         var opts = {
           seed : {
@@ -119,21 +220,25 @@ layout: false
                       [ [ 427, 286, 383, 253, 371, 205, 2, 40 ], [ 498, 345, 435, 315, 395, 330, 4, 60 ] ] ],
                   [ 546, 357, 608, 252, 678, 221, 6, 100, [ [ 590, 293, 646, 277, 648, 271, 2, 80 ] ] ] ] ] ],
           bloom : {
-            num : 700,
-            width : 1080,
-            height : 650,
+            num : Math.floor(dayAddon.days / 10),
+            width : treeAddon.bloomWidth,
+            height : treeAddon.bloomHeight,
+            radius : treeAddon.bloomRadius
           },
           footer : {
-            width : 1200,
+            width : width,
             height : 5,
             speed : 10,
           }
         }
 
+
+        opts.branch = treeAddon.getBranches();
+
         var tree = new Tree(canvas[0], width, height, opts);
         var seed = tree.seed;
         var foot = tree.footer;
-        var hold = 1;
+        var hold = 0;
 
         canvas.click(function(e) {
           var offset = canvas.offset(), x, y;
@@ -183,16 +288,26 @@ layout: false
         }));
 
         var moveAnimate = eval(Jscex.compile("async", function() {
-          tree.snapshot("p1", 240, 0, 610, 680);
-          while (tree.move("p1", 500, 0)) {
+          var x1 = 240, y1 = 0, x2 = 500, y2 = 0;
+          var w = 610, h = 680;
+          var tb = treeAddon.getBounds();
+          w = Math.max(treeAddon.bloomRadius * 4, tb[2] - tb[0]);
+          h = canvas.height();
+          x1 = (canvas.width() - w) / 2;
+          x2 = canvas.width() - w - 20;
+          x1 = Math.max(x1, 0);
+          x2 = Math.max(x2, 0);
+
+          tree.snapshot("p1", x1, y1, w, h);
+          while (tree.move("p1", x2, y2)) {
             foot.draw();
             $await(Jscex.Async.sleep(10));
           }
           foot.draw();
-          tree.snapshot("p2", 500, 0, 610, 680);
+          tree.snapshot("p2", x2, y2, w, h);
 
           // 会有闪烁不得意这样做, (＞﹏＜)
-          canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+          canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ") no-repeat");
           canvas.css("background", "#ffe");
           $await(Jscex.Async.sleep(300));
           canvas.css("background", "none");
@@ -209,13 +324,16 @@ layout: false
         }));
 
         var textAnimate = eval(Jscex.compile("async", function() {
-          var together = love_date;
+          var together = dayAddon.start;
 
           $("#code").show().typewriter();
           $("#clock-box").fadeIn(500);
           while (true) {
             timeElapse(together);
             $await(Jscex.Async.sleep(1000));
+
+            // var h = $(document).height()-$(window).height();
+            // $(document).scrollTop(h);
           }
         }));
 
@@ -234,7 +352,7 @@ layout: false
         }));
 
         function inputPwd(count){
-          var pwd = ['七夕快乐','I love you', lover, festival];
+          var pwd = [' ','I love you', dayAddon.lover, dayAddon.festival];
           var tip = '送给谁的？今天是什么特殊的日子？';
           var txt = prompt('查看本网页需要密码\n密码提示：' + tip, '');
           if (pwd.indexOf(txt) < 0) {
@@ -251,76 +369,6 @@ layout: false
 
         runAsync().start();
       })();
-    </script>
-
-    <script>
-      // 设置恋爱开始的时间,可以精确到秒
-      var love_date = new Date();
-      love_date.setFullYear(2013, 02, 23); //时间年月日
-      love_date.setHours(20); //小时
-      love_date.setMinutes(11); //分钟
-      love_date.setSeconds(0); //秒前一位
-      love_date.setMilliseconds(0); //秒第二位
-
-      var author = '明月';
-      var lover = '小欣';
-      var festival = '情人节';
-      var birthday = new Date();
-      birthday.setFullYear(1990, 06, 13);
-
-      var today = new Date();
-      // today.setFullYear(2017, 02, 23);
-      var lunar = calendar.solar2lunar(today.getFullYear(), today.getMonth() + 1, today.getDate());
-      console.log(lunar);
-
-      var years = today.getFullYear() - love_date.getFullYear();
-      if (isSpecialDay(birthday)) {
-        festival = '生日';
-      }
-      else if (isSpecialDay(love_date)) {
-        festival = '恋爱周年纪念日';
-      }
-      else if (isSpecialDay(love_date)) {
-        festival = '恋爱周年纪念日';
-      }
-      else if (isSpecialDay2(7,7, true)) {
-        festival = '七夕节';
-      }
-      else if (isSpecialDay2(1,15, true)) {
-        festival = '元宵节(中国情人节)';
-      }
-
-      console.log(festival);
-      function isSpecialDay(day, isLunar){
-        var m = isLunar ?  lunar.lMonth - 1 : today.getMonth();
-        var d = isLunar ? lunar.lDay : today.getDate();
-        if (day.getMonth() == m && day.getDate() == d) {
-          return true;
-        }
-        return false;
-      }
-      function isSpecialDay2(month, day, isLunar) {
-        var m = isLunar ?  lunar.lMonth : today.getMonth() + 1;
-        var d = isLunar ? lunar.lDay : today.getDate();
-        return (m == month && d == day);
-      }
-
-      $('.lover').text(lover);
-      $('.author').text(author);
-      $('.festival').text(festival);
-      $('.years').text(years);
-      var title = '祝' + lover + festival + '快乐！';
-      document.title = title;
-
-      var marqueeCount = 0;
-      function marqueeTitle() {
-        var end = marqueeCount % title.length;
-        document.title = title.substr(0, end) || title;
-        // console.log(document.title);
-        marqueeCount++;
-        setTimeout('marqueeTitle()', 150);
-      }
-      marqueeTitle();
     </script>
 </body>
 </html>

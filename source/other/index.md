@@ -14,7 +14,7 @@ toc: false
 [点击这里](password.html)查看示例（密码：123）。
 
 ### 爱情树
-可以送给女盆友，[点击这里查看示例](./love.html)，[点击这里查看全屏效果](./love2.html)（密码：七夕快乐）
+可以送给女盆友，[点击这里查看示例](./love2.html)
 
 ### 思维导图
 参考[分类](../categories/index.html)
