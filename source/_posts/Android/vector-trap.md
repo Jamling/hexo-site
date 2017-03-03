@@ -20,7 +20,7 @@ Android 从5.0（代号L）开始支持矢量图，心想，这个好哇，drawa
         android:fillColor="@color/colorPrimary"
         android:pathData="..."/>
 ```
-然而在5.0以下的设备中运行时发现，图标为黑色，`1`fillColo`设置无效。Google之后，说应该使用Tint来对vector着色，好吧，于是写了一个util方法进行处理。
+然而在5.0以下的设备中运行时发现，图标为黑色，`fillColor`设置无效。Google之后，说应该使用Tint来对vector着色，好吧，于是写了一个util方法进行处理。
 ``` java
 public static Drawable tintDrawable(Drawable drawable, int color) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
