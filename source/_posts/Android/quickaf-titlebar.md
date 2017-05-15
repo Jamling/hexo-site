@@ -43,9 +43,9 @@ TitleBar提供了一个`addRightView()`的API来添加右侧菜单项。参数�
 - 右侧button为图片：
 ``` java
 mTitleTextView.setText(R.string.house_title);
-mMap = (ImageView) mAbTitleBar.addRightView(R.layout.layout_title_icon);
+mMap = (ImageView) mTitleBar.addRightView(R.layout.layout_title_icon);
 mMap.setImageResource(R.drawable.title_map);
-mSearch = (ImageView) mAbTitleBar.addRightView(R.layout.layout_title_icon);
+mSearch = (ImageView) mTitleBar.addRightView(R.layout.layout_title_icon);
 mSearch.setImageResource(R.drawable.title_search);
 setOnClickListener(mMap, mSearch);
 ```
@@ -88,4 +88,3 @@ TitleBar内部未实现popup menu，如果需要使用下拉菜单，可以在�
 QuickAF: https://github.com/Jamling/QuickAF
 
 [QuickAF]: https://github.com/Jamling/QuickAF
-

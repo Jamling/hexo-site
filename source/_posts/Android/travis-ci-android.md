@@ -54,6 +54,24 @@ before_install:
 ***我有gradle/wrapper/gradle-wrapper.properties文件，而且里面的版本就是2.14.1，为毛不起作用啊！！！***
 ***unzip 要使用-n参数，不然，目录存在，会一直卡死在unzip***
 
+如果不想每次下载gradle，可以在root project的build.gradle中手动设置gradle版本
+```gradle
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
+```
+然后执行的命令使用`./gradle app:assembleRelease`
+
+但接着又发现`./gradlew: Permission denied` gradlew因为权限问题而导致执行失败。
+
+解决办法如下：参考http://stackoverflow.com/questions/33820638/travis-yml-gradlew-permission-denied
+```bash
+git update-index --chmod=+x gradlew
+git commit -m "permission access for travis"
+git ls-tree HEAD
+```
+如果gradlew权限为100755表示成功给它加上了执行权限
+
 ## SDK设置
 sdk的配置一定要对应好。不然编译会失败
 

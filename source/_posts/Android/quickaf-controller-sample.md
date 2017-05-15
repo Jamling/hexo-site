@@ -24,6 +24,9 @@ VolleyManager.init(getApplicationContext(), config);
 ```
 如果有喜欢使用OkHttp的同学，还可配置网络连接使用OkHttp。
 
+### 接口响应对象
+`WeatherBaseResponse.class`为接口返回对象class，一般一套接口标准中只有唯一的一个。接口返回的对象一般包含状态码(status)，提示信息(message)及业务对象（data）。对于业务模块，只需要关心业务对象(data)即可，框架中还可以定义拦截器，如果接口请求成功，业务操作不成功，则不会进入业务逻辑层。
+
 ## 接口API
 在这里，使用的是[百度api store中的天气api](http://apistore.baidu.com/apiworks/servicedetail/112.html)，其中了其中的两个API
 1. 查询城市可用列表，通过输入的城市名称，查询该城市下的城市（或区）列表。
@@ -32,7 +35,7 @@ VolleyManager.init(getApplicationContext(), config);
 ### 模型
 根据接口API，先把模型定义出来
 
-- 查询城市列表请求模型`BaseRequest` 
+- 查询城市列表请求模型`BaseRequest`
 非常简单，只有一个cityname的请求参数
 ```java
 public class BaseRequest implements Serializable {
@@ -113,19 +116,19 @@ public class WeatherController extends AppController<WeatherController.WeatherLi
         CityWeatherTask task = new CityWeatherTask();
         task.load(req, WeatherInfo.class, false);
     }
-    
+
     private class CityListTask extends AppBaseTask<BaseRequest, List<CityInfo>> {
 
         @Override
         public IUrl getUrl() {
             return new URLConst.AbsoluteUrl("http://apis.baidu.com/apistore/weatherservice/citylist").get();
         }
-        
+
         @Override
         public void onSuccess(List<CityInfo> out, boolean fromCache) {
             mListener.onLoadCityListSuccess(out, fromCache);
         }
-        
+
         @Override
         public void onError(RestError error) {
             mListener.onLoadCityListFailure(error);
@@ -149,19 +152,19 @@ public class WeatherController extends AppController<WeatherController.WeatherLi
             return  request;
         }
     }
-    
+
     private class CityWeatherTask extends AppBaseTask<BaseRequest, WeatherInfo> {
 
         @Override
         public IUrl getUrl() {
             return new URLConst.AbsoluteUrl("http://apis.baidu.com/apistore/weatherservice/cityname").get();
         }
-        
+
         @Override
         public void onSuccess(WeatherInfo out, boolean fromCache) {
             mListener.onLoadWeatherSuccess(out, fromCache);
         }
-        
+
         @Override
         public void onError(RestError error) {
             mListener.onLoadWeatherError(error);
@@ -185,14 +188,14 @@ public class WeatherController extends AppController<WeatherController.WeatherLi
             return  request;
         }
     }
-    
+
     public interface WeatherListener {
         void onLoadCityListSuccess(List<CityInfo> out, boolean fromCache);
-        
+
         void onLoadCityListFailure(RestError error);
-        
+
         void onLoadWeatherSuccess(WeatherInfo out, boolean fromCache);
-        
+
         void onLoadWeatherError(RestError error);
     }
 ```
@@ -259,7 +262,7 @@ public class WeatherActivity extends BaseActivity implements WeatherController.W
         req.cityname = name;
         controller.loadCityList(req, needCache);
     }
-    
+
     /**
      * 获取城市天气详情
      */
@@ -271,7 +274,7 @@ public class WeatherActivity extends BaseActivity implements WeatherController.W
             controller.loadWeather(req);
         }
     }
-    
+
     @Override
     public void onLoadCityListSuccess(List<CityInfo> out, boolean fromCache) {
         adapter.setDataList(out);

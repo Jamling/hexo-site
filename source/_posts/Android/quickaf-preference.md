@@ -38,9 +38,9 @@ Preference控件的目的在于替换Android自带的Preference，在[QuickAF]�
 - `android:key`：持久化时，写入shared preference中的key名称
 - `android:title`：主标题，一般是左侧的文字
 - `android:summary`：副标题，一般是右则的文字或主标题下方的文字
-- `android:persistent`：是否持久化，如果为true，将会将checkbox的值写入shared preference 
+- `android:persistent`：是否持久化，如果为true，则会将checkbox的值写入shared preference
 *目前仅支持checkbox写入*
-- `android:layout`：允许添加一个自定义的layout到当前控件中，一般为checkbox。
+- `android:layout`：允许添加一个自定义的layout到当前控件中。
 - `android:icon`：设置主标题左侧的图标
 - `android:drawableRight`：设置副标题右侧的图标，比如一个〉右箭头
 - `android:gravity`：设置主标题的对齐方式
