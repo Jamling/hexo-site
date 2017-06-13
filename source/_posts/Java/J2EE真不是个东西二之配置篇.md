@@ -1,7 +1,7 @@
 ---
 title: J2EE真不是个东西二之配置篇
 date: 2007-8-24 20:24:00
-category: [,Java]
+category: [Java]
 tags: [J2EE]
 toc: true
 ---
