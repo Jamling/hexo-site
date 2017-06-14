@@ -8,15 +8,15 @@ toc: true
 
 ## 引言
 
-鉴于github.io在国内访问速度较慢，而且github.io不会被百度收录，所以在将hexo博客站点部署到国内的站点是一个不错的选择。之前，国内有一家与github类似的gitcafe公司，不过在今年的时候，gitcafe已经停止服务，用户数据全部迁移到coding.net了。coding.net也提供pages服务，所以我选择coding.net作为国内的博客部署平台。
+鉴于github.io在国内访问速度较慢，而且github.io不会被百度收录，所以在将[Hexo]博客站点部署到国内的站点是一个不错的选择。之前，国内有一家与github类似的gitcafe公司，不过在今年的时候，gitcafe已经停止服务，用户数据全部迁移到[coding.net]了。而且[coding.net]也提供与github pages一样的pages服务，所以我选择[coding.net]作为国内的博客部署平台。
 
 ## 开启Coding Pages服务
 
-在开启Coding Pages服务之前，你必须得有一个coding.net账户，然后创建一个（私有并且项目名称与您的用户名称一致的）项目。并开启（用户）Pages服务。
+在开启Coding Pages服务之前，你必须得有一个[coding.net]账户，然后创建一个（私有并且项目名称与您的用户名称一致的）项目。并开启（用户）Pages服务。
 
 {% asset_img coding.net-console.png %}
 
-如果未开启服务，则界面上有一个开启服务的按钮。点击来开启服务。服务开启之后，可以绑定域名。Coding Pages默认使用https协议。如果不绑定域名，Coding.net提供了一个默认的<var>yourname</var>.coding.me域名。
+如果未开启服务，则界面上有一个开启服务的按钮，点击开启服务。服务开启之后，可以绑定域名。Coding Pages默认使用https协议。如果不绑定域名，[coding.net]提供了一个默认的<var>yourname</var>.coding.me域名。
 
 官方有详细文档，请点击[Coding Pages 帮助]查看
 
@@ -37,13 +37,13 @@ PS：
 - 我的博客在github和coding.net，都是属于用户Pages，如果是项目Pages，请看我的dl.ieclipse.cn解析规则，CNAME国内解析到pages.coding.net。CNAME海外解析到<var>username</var>.github.io。
 
 ## 验证测试
-验证测试的办法就是github.io上的内容与coding.me上的内容不一致，然后通过使用海外代理或翻墙的方式来访问相同的域名，看是否解析正常。浏览器不使用代理，VPN，访问的域名，就是coding.me。使用翻墙软件访问的就是github.io。然后看比较内容，看是否正常解析。还有一种方式就是注意看浏览器左下角的状态。比如输入域名后回车，状态栏有正在连接github.io，则说明访问的是海外路线。
+验证测试的办法就是github.io上的内容与[coding.me]上的内容不一致，然后通过使用海外代理或翻墙的方式来访问相同的域名，看是否解析正常。浏览器不使用代理，VPN，访问的域名，就是coding.me。使用翻墙软件访问的就是github.io。然后看比较内容，看是否正常解析。还有一种方式就是注意看浏览器左下角的状态。比如输入域名后回车，状态栏有正在连接github.io，则说明访问的是海外路线。
 
 ## Hexo设置
 
 github.io与coding.me都可以通过git来部署。
 
-```yaml _config.yml
+``` yaml
 deploy:
   type: git
   repo: 
@@ -51,15 +51,19 @@ deploy:
     github: git@github.com:Jamling/jamling.github.com.git,master
 ```
 
-repo可以写多个，格式为git仓库地址+英文逗号+分支名称。在国内，有时部署到github.io会失败，此时，coding.me上的博客是最新的，而github.io上的博客还是原来的，此时，正是验证你双线部署是否成功的绝佳时刻。
+repo可以写多个，格式为git仓库地址+英文逗号+分支名称。在国内，有时部署到github.io会失败，此时，[coding.me]上的博客是最新的，而github.io上的博客还是原来的，此时，正是验证你双线部署是否成功的绝佳时刻。
 
 ## 致谢
-github.com和coding.net为大家免费提供的pages服务，希望大家不要滥用，更不要做违反相关法律法规的事，不然，哪一天迫于政府压力终止服务或被墙的时候，到哪里去找这么优质的免费空间呢？
+- **感谢[github.com]!**
+- **感谢[coding.net]!** 
+
+[github.com]和[coding.net]为大家免费提供的pages服务，希望大家不要滥用，更不要做违反相关法律法规的事，不然，哪一天迫于政府压力终止服务或被墙的时候，到哪里去找这么优质的免费空间呢？
 
 ## 参考
 Coding Pages 帮助: https://coding.net/help/doc/pages/index.html
 github pages自定义域名: https://help.github.com/articles/setting-up-a-custom-subdomain/
-
+[github.com]: https://github.com
+[coding.net]: https://coding.net
 [Hexo]: https://hexo.io
 [Nova]: http://github.com/Jamling/hexo-theme-nova
 [Coding Pages 帮助]: https://coding.net/help/doc/pages/index.html

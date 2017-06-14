@@ -95,21 +95,31 @@ abstract class MyTask<Input,Output> {
   Url getUrl();//业务请求地址
 }
 ```
-对于每个业务接口，[QuickAF]已经为您做好了网络连接与数据解析，对于开发者来说，只需关心接口地址，请求对象，响应对象。业务请求成功，在相关的界面填充数据，请求失败，给出相应的错误提示。
+在[QuickAF]中，已经实现了网络请求与数据解析功能，所以对开发者来说，只需专注于业务接口，即：接口地址，请求对象，返回的业务对象(data)。业务请求成功，在相关的界面填充业务数据(data)，请求失败，给出相应的错误信息(message)。
+
 [QuickAF]有两个执行任务的方法
+
 1. 如果输出为对象(Output)是一个对象，则需调用load方法，将Output的class传进去。
 2. 如果输出为集合(List)，则需调用load2List方法，将集合中的元素class传进去。
+3. 自动识别，调用load方法，无需传入Output的class。
+
 ```java
+// method 1
 class MyTask<Object, User> {
-  ...
+  //... 获取单个用户，输入为object，输出为User
 }
-//
-new MyTask().load(null, User.class, false);
-// for List
+// 执行任务
+new MyTask().load(/*request*/null, User.class, /*don't load cache*/false);
+
+// method 2 for List
 class MyListTask<Object, List<User>> {
-  ...
+  //... 获取用户列表，输入为object, 输出为List<User>集合
 }
-new MyListTask().load2List(null, User.class, false);
+new MyListTask().load2List(null, User.class, /*use cache*/true);
+
+// method 3, auto load
+new MyTask().load(null, false);// sampe to load(null, User.class, false)
+new MyListTask().load(null, true);// sampe to load2List(null, User.class, false)
 ```
 
 
@@ -147,7 +157,7 @@ VolleyConfig config = new VolleyConfig.Builder()
     .build();
 VolleyManager.init(getApplicationContext(), config);
 ```
-如果有喜欢使用OkHttp的同学，还可配置网络连接使用OkHttp。
+如果有喜欢使用OkHttp的同学，还可配置网络连接使用OkHttp，需要写一个OkHttpStack继承自Volley的HurlStack，参考[QuickAF]示例app中的OkHttpStack.java.sample。
 
 ### 接口统一处理
 主要是根据接口业务状态码进行处理。比如定义业务操作成功，响应码为0，那么不为0的时候，就不应该解析业务对象，转入错误分支。
@@ -175,15 +185,16 @@ protected abstract class AppBaseTask<Input, Output> extends RequestObjectTask<In
     }
 }
 ```
+
 ### 数据模拟
-接口对象或业务对象类需在mock()方法中给对象填充模拟值。
+接口对象或业务对象类需在mock()方法中给对象填充模拟值，参考示例工程中BaseInfo.java（这个类是所有业务对象模型的基类）。
 
 ## 最佳实践
 - 所有的请求继承一个BaseRequest，接口定义的全局请求参数在BaseRequest中定义
 - 一套接口API，定义一个全局的AppController及AppBaseTask来处理公共的业务，比如业务拦截。
 - 所有的业务模型继承一个BaseInfo
 - 一个Controller对应一个界面，应继承AppController，包含若干网络请求Task
-- 网络请求Task回调作为内部interface定义在Controller中。
+- 网络请求Task回调作为内部interface定义在具体的Controller中。
 
 更多请参考demo app工程
 

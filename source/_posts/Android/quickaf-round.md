@@ -5,10 +5,10 @@ tags: [Android, QuickAF]
 category: [Android]
 toc: true
 ---
- Android中实现圆角图片有多种姿势，不知道你解锁了几种？
+ Android中实现圆角图片有多种姿势，不知你解锁了几种？
 <!-- more -->
 
-## setXfermode法
+## 方法一：setXfermode法
 此种方式就是再new一个相同尺寸的bitmap，然后使用paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));先画圆角矩形，再画原始bitmap，然后就得到了一个圆角的bitmap了。
 ```java
 public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
@@ -34,8 +34,9 @@ public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
 ```
 点评：
 早期用得较多，占用bitmap双倍内存。
-## 使用BitmapShader
-此种方式是先将bitmap生成BitmapShader，然后将其绘制到canvas中, 部分关键代码如下，完整代码就参考[QuickAF]中的RoundImageView
+
+## 方法二：使用BitmapShader
+此种方式是先将bitmap生成BitmapShader，然后将其绘制到canvas中, 部分关键代码如下，完整代码请参考[QuickAF]中的RoundImageView
 
 ```java
 bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -59,7 +60,8 @@ public void draw(Canvas canvas) {
 ```
 点评：
 占用内存较大，实现有点小复杂。
-## 第三方图片加载库
+
+## 方法三：图片加载库
 目前github上有许多流行的图片加载库，基于上都附带圆角图片功能，只需要稍微配置一下，即可轻松的实现想要的效果。其实在底层，无非也是使用上面的两种方式。比如[Android-Universal-Image-Loader](Android-Universal-Image-Loader) 早期的RoundedBitmapDisplayer使用setXfermode来实现，后来使用BitmapShader实现。
 ```java
 DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -100,8 +102,8 @@ DisplayImageOptions options = new DisplayImageOptions.Builder()
 点评：
 由框架实现，使用简单，稳定。
 
-## 另类的
-此种方式还是使用setXfermode，不过与方法一不同的是，不对图片作任何更改，只在圆角之外再画一层与背景颜色相同的四个角来遮挡，在视觉上造成圆角图片效果。关键代码如下：
+## 方法四：遮罩
+此种方式还是使用setXfermode，不过与方法一不同的是：不对图片作任何更改，只在圆角之外再画一层与背景颜色相同的四个角来遮挡，在视觉上造成圆角图片的效果。关键代码如下：
 ```java
 @Override
 protected void onDraw(Canvas canvas) {
@@ -121,7 +123,7 @@ protected void onDraw(Canvas canvas) {
 ```
 详细代码请参考[QuickAF]中的RoundMaskView
 
-使用示例：
+使用这种方式，圆角化的对象不限于ImageView，还可以是任意的layout哦，比如下面的示例
 ```xml
 <FrameLayout
     android:layout_width="match_parent"
@@ -154,9 +156,10 @@ protected void onDraw(Canvas canvas) {
         app:af_borderWidth="1dp"/>
 </FrameLayout>
 ```
+配合FrameLayout，将LinearLayout实现了圆角，在视觉效果上，ImageView左上和右上圆角，TextView左下和右下圆角。
 
 点评：
-具有一定的局限性，不过不限于图片，所有的Layout都可以在视觉上实现圆角
+具有一定的局限性，不过不限于图片，所有的Layout都可以在视觉上实现圆角。
 
 ## 关于
 
