@@ -17,7 +17,7 @@
     "hexo-generator-index2": "^0.0.1",
     "hexo-generator-seo-friendly-sitemap": "0.0.16",
     "hexo-generator-tag": "^0.2.0",
-    "hexo-renderer-marked": "^0.2.10",
+    "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-sass": "^0.2.0",
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-generator-i18n": "^0.0.6",

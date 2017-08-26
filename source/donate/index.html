@@ -8,25 +8,25 @@ description: 捐赠墙
 <script>
   var top = {project: false}
   function loadRecords(current) {
-    $.getJSON('http://ot.ieclipse.cn/ot/index.php/Home/Donate/index', function(data) {
+    $.getJSON('http://api.ieclipse.cn/donate', function(data) {
       $("#tb-main tr:not(:first)").remove();
       var items = [];
-      
+
       $.each(data.all_list, function(key, val) {
-        var d = new Date();
-        d.setTime(val.time * 1000);
-        var newRow = ('<tr><td>' + (key + 1) + '</td><td>' + val.name + '</td><td>￥' + val.value + '</td><td>' + d.toLocaleDateString() + '</td></tr>');
+        var d = new Date(val.time);
+        // d.setTime(val.time * 1000);
+        var newRow = ('<tr><td>' + (key + 1) + '</td><td>' + val.name + '</td><td>￥' + val.value + '</td><td>' + d.toLocaleFormat() + '</td></tr>');
         $("#tb-main tr:last").after(newRow);
       });
-      
+
       initPage(Number(data.total), Number(data.page_size), current === undefined ? 1 : current);
-      
+
       $("#tb-top-count tr:not(:first)").remove();
         $.each(data.top_count, function(key, val) {
         var newRow = ('<tr><td>' + (key + 1) + '</td><td>' + val.name + '</td><td>' + val.value + '</td></tr>');
         $("#tb-top-count tr:last").after(newRow);
       });
-      
+
       $("#tb-top-sum tr:not(:first)").remove();
       $.each(data.top_sum, function(key, val) {
         var trcls = "";
@@ -40,7 +40,7 @@ description: 捐赠墙
         var newRow = ('<tr' + trcls + '><td>' + (key + 1) + '</td><td>' + val.name + '</td><td>' + val.value + '</td></tr>');
         $("#tb-top-sum tr:last").after(newRow);
       });
-      
+
       if (top.project) {
       $("#tb-prj-count tr:not(:first)").remove();
       $.each(data.prj_count, function(key, val) {
@@ -57,7 +57,7 @@ description: 捐赠墙
       });
       }
     });
-    
+
     function initPage(total, size, page){
       var tp = Math.ceil(total / size);
       var currentPage = page === undefined ? 1 : page;
@@ -84,21 +84,21 @@ description: 捐赠墙
       $('#page-bar').replaceWith(html);
     }
   }
-  
+
   function goPage(p, s){
         loadRecords(p);
     }
   window.addEventListener("load", function () {
     loadRecords();
   });
-  
+
   function val_donate(){
     var f = $('#donateForm');
     var fe = f.elements;
     var rg = $('#donateForm :radio');
     var s = $('#donateForm select');
     var s1 = "alipay";
-    
+
     for (var i=0;i<rg.length;i++){
       var r = rg[i];
       if (r.checked){
@@ -108,11 +108,11 @@ description: 捐赠墙
     }
     s1 = s1 || 'alipay';
     var src = '/image/donate_' + s1;
-    
+
     src += '.png';
     $('#donate_pic').attr('src',src);
   }
-  
+
   $('#DonateModal').on('show.bs.modal', function (e) {
     $('#donateForm').reset();
   })
@@ -122,7 +122,7 @@ description: 捐赠墙
   <div class="jumbotron">
     <div class="card-content">
       <h2 class="card-title">打赏</h2>
-      <p>鄙人是一名技术宅，一直致力于相关技术的研究与探索，托管在github上的相关项目，全部为本人放弃休息，奋战若干个日日夜夜的结果，最长的项目甚至从09年就已经开始，如果您对相关项目感兴趣，非常欢迎您在github
+      <p>如果您对相当项目感兴趣，欢迎前往<a href="https://github.com/Jamling">github</a>
         fork或star，您的star或fork将是我最大的动力！如果您愿意的话，也可以对相关项目进行捐赠，让免费开源之路能够走得更远~</p>
     </div>
     <div class="card-action">
