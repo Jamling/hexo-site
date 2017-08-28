@@ -15,7 +15,7 @@ toc: false
 
 ### 爱情树
 可以送给女盆友，[点击这里查看示例](./love2.html)
-
+本效果已经集成到nova主题中，点击[love.html](./love.html)查看
 ### 思维导图
 参考[分类](../categories/index.html)
 
