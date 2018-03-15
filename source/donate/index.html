@@ -8,7 +8,8 @@ description: 捐赠墙
 <script>
   var top = {project: false}
   function loadRecords(current) {
-    $.getJSON('http://api.ieclipse.cn/donate', function(data) {
+
+    $.getJSON('http://api.ieclipse.cn/donate?p=' + (current === undefined ? 1 : current), function(data) {
       $("#tb-main tr:not(:first)").remove();
       var items = [];
 
