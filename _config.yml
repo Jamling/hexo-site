@@ -101,8 +101,10 @@ github:
   repos:
     - Android-ORM
     - QuickAF
-    - adt-extensions
+    - SmartQQ4Eclipse
+    - SmartQQ4IntelliJ
     - eclipse-explorer
+    - adt-extensions
     - hexo-theme-nova
     - hexo-generator-i18n
 i18n:

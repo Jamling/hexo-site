@@ -15,7 +15,7 @@ description: 捐赠墙
       $.each(data.all_list, function(key, val) {
         var d = new Date(val.time);
         // d.setTime(val.time * 1000);
-        var newRow = ('<tr><td>' + (key + 1) + '</td><td>' + val.name + '</td><td>￥' + val.value + '</td><td>' + d.toLocaleFormat() + '</td></tr>');
+        var newRow = ('<tr><td>' + (key + 1) + '</td><td>' + val.name + '</td><td>￥' + val.value + '</td><td>' + d.toLocaleDateString() + '</td></tr>');
         $("#tb-main tr:last").after(newRow);
       });
 
