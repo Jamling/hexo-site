@@ -109,9 +109,11 @@ github:
     - hexo-generator-i18n
 i18n:
   type: [page,post]
-  generator: [archive, category, tag, index]
-index_generator:
-#  include: category 软件技术
+  generator: [archive, category, tag, index2]
+#index2_generator:
+  #- layout: 'index' # use existing index layout
+  #  path: '' # output to root directory: http://127.0.0.1:4000/
+  #  index: true # Set whether index, results is_home() is true or not
   
 # hexo-filter-plugin (https://github.com/Jamling/hexo-filter-highlight) config 
 ## highlight in frontend, the plugin (backend) just do some prepare work.
