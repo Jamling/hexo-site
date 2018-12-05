@@ -9,7 +9,7 @@ description: 捐赠墙
   var top = {project: false}
   function loadRecords(current) {
 
-    $.getJSON('http://api.ieclipse.cn/donate?p=' + (current === undefined ? 1 : current), function(data) {
+    $.getJSON('//api.ieclipse.cn/donate?p=' + (current === undefined ? 1 : current), function(data) {
       $("#tb-main tr:not(:first)").remove();
       var items = [];
 
