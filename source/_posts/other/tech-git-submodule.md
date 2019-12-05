@@ -31,9 +31,11 @@ hexo-site #整个工程，对应 hexo-site 仓库
 在hexo-site目录下，通过`git submodule add`命令添加主题及插件子模块
 
 ```bash
-git submodule add -f git@github.com:Jamlng/hexo-theme-nova themes/nova
-git submodule add -f git@github.com:Jamlng/hexo-generator-github node_modules/hexo-generator-github
-git submodule add -f git@github.com:Jamlng/hexo-generator-i18n node_modules/hexo-generator-i18n
+git submodule add -f git@github.com:Jamling/hexo-theme-nova themes/nova
+git submodule add -f git@github.com:Jamling/hexo-generator-github node_modules/hexo-generator-github
+git submodule add -f git@github.com:Jamling/hexo-generator-i18n node_modules/hexo-generator-i18n
+git submodule add -f git@github.com:Jamling/hexo-generator-index2 node_modules/hexo-generator-index2
+git submodule add -f git@github.com:Jamling/hexo-filter-highlight node_modules/hexo-filter-highlight
 ```
 
 加-f选项，是因为themes目录和node_modules目录加入了.gitignore，`git submodule add`第一个参数为子模块的git仓库地址，第二个参数为子模块的名字。子模块成功添加之后，会在hexo-site目录下创建一个<var>.gitmodules</var>文件。内容如下：

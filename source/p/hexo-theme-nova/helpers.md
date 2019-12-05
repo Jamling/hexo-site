@@ -63,7 +63,7 @@ Option | Description | Default
 `class` | The path item class | tag-item
 `icon` | The path preffix icon class | glyphicon glyphicon-tags
 
-### page_share_jiathis
+### ~~page_share_jiathis~~
 @param `post` the post, if undefined means current page
 @param `webid` [the webib of jiathis share](http://www.jiathis.com/help/html/support-media-website), if empty will redirect to share target page of jiathis.
 Return share link of post
@@ -124,13 +124,16 @@ Option | Description | Default
 `order` | Sort of order. `1`, `asc` for ascending; `-1`, `desc` for descending | 1
 `show_count` | Display the number of posts for each archive | true
 `format` | Date format | MMMM YYYY
-`style` | Style to display the archive list. `list` displays archives in an unordered list. **`group` displays archives in a panel** | list
+`style` | Style to display the archive list. `list` displays archives in an unordered list. **`group` displays archives in a panel** | list. **`page`** displays archives in archives page.
 `separator` | Separator between archives. (Only works if `style` is not `list`) | ,
 `class` | Class name of archive list. | archive
 `transform` | The function that changes the display of archive name. |
 `post_limit` | The posts display limitation. (add in nova) | 10
 
-### nova_archives
+### ~~nova_archives~~
+
+Deprecated from 0.2.0, see `nova_list_archives` helpers and set `page` style options
+
 Inserts a list of archives.
 Similar to list_archives, used in post/archives.swig
 

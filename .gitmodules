@@ -6,4 +6,10 @@
 	url = gh:Jamling/hexo-generator-github
 [submodule "node_modules/hexo-generator-i18n"]
 	path = node_modules/hexo-generator-i18n
-	url = gh:Jamling/hexo-generator-i18n
+	url = git@github.com:Jamling/hexo-generator-i18n
+[submodule "node_modules/hexo-generator-github"]
+	path = node_modules/hexo-generator-github
+	url = git@github.com:Jamling/hexo-generator-github
+[submodule "node_modules/hexo-filter-highlight"]
+	path = node_modules/hexo-filter-highlight
+	url = git@github.com:Jamling/hexo-filter-highlight

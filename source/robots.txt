@@ -2,8 +2,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://www.ieclipse.cn/sitemap.xml
-Sitemap: http://www.ieclipse.cn/category-sitemap.xml
-Sitemap: http://www.ieclipse.cn/tag-sitemap.xml
-Sitemap: http://www.ieclipse.cn/page-sitemap.xml
-Sitemap: http://www.ieclipse.cn/post-sitemap.xml
+Sitemap: https://www.ieclipse.cn/sitemap.xml
+Sitemap: https://www.ieclipse.cn/category-sitemap.xml
+Sitemap: https://www.ieclipse.cn/tag-sitemap.xml
+Sitemap: https://www.ieclipse.cn/page-sitemap.xml
+Sitemap: https://www.ieclipse.cn/post-sitemap.xml

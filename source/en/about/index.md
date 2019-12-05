@@ -16,5 +16,5 @@ This is a static blog site powered by Hexo, main struction is blog + project.
  * Blog donate：if you feel the article good, you can give me a reward.
  * Project donate：Looking forward to your star or fork on github, a reward is also welcome~
  
-All the donate/reward records will be updated in 2 days.
+All donate/reward records will be updated in 2 days.
 

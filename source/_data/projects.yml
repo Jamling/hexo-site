@@ -30,7 +30,19 @@ hexo-theme-nova:
 hexo-generator-i18n:
   overview: index.html
   download: download.html
-  
+
+hexo-generator-index2:
+  overview: index.html
+  download: download.html
+
+hexo-generator-github:
+  overview: index.html
+  download: download.html
+
+hexo-filter-highlight:
+  overview: index.html
+  download: download.html
+
 QuickAF:
   overview: index.html
   download: download.html

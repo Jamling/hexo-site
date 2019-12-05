@@ -19,7 +19,7 @@ toc: true
 
 ## 示例json
 
-``` yaml
+``` json
 {
     "code":0, //响应码，为0时表示接口正常响应
     "msg":"ok",

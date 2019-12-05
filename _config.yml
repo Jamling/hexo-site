@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.ieclipse.cn
+url: https://www.ieclipse.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -83,30 +83,46 @@ deploy:
   type: git
   repo: 
     coding: git@git.coding.net:Jamling/Jamling,coding-pages
-    github: gh:Jamling/jamling.github.io.git,master
+    github: git@github.com:Jamling/jamling.github.io.git,master
   
 marked:
   gfm: true
   pedantic: false
-  sanitize: false
-  tables: true
   breaks: true
   smartLists: true
   smartypants: true
+  modifyAnchors: ''
+  autolink: true
+  sanitizeUrl: false
+  headerIds: true
+  prependRoot: false
   
 github:
-  debug: false
-  user: Jamling
-  cache_dir: gh_cache
-  repos:
-    - Android-ORM
-    - QuickAF
-    - SmartQQ4Eclipse
-    - SmartQQ4IntelliJ
-    - eclipse-explorer
-    - adt-extensions
+  debug: true # enable debug to log github api request/response
+  user: Jamling # your github user name
+  timeout: 60000 # set the github api request timeout
+  token: d36d315ed851803557fbd6ae7a58c4f5b48ad8bf # enable Authorization for github api request, the api request limit will grow up from 60 to 5000
+  cache_dir: gh_cache # the response of github api will stored under the directory.
+  repos: # request following repositories, otherwise, all repositories (limit 100) of user will be requested.
+    - SmartIM4Eclipse
+    - SmartIM4IntelliJ
     - hexo-theme-nova
     - hexo-generator-i18n
+    - hexo-generator-github
+    - hexo-generator-index2
+    - hexo-filter-highlight
+    - Android-ORM
+    - eclipse-explorer
+    - QuickAF
+  navs: # project page left default nav menu, you can config for each project in ${blog}/_data/projects.yml
+    overview: index.html
+    index: index.html
+    start: start.html
+    release: release.html
+    download: download.html
+    userguide: userguide.html
+    change: change.html
+
 i18n:
   type: [page,post]
   generator: [archive, category, tag, index2]

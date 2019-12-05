@@ -6,7 +6,7 @@ title2: menu.about
 
 # 关于作者
 
-Jamling，男，正式的职业为一名Java/Android软件工程师（俗称IT男），您可以通过以下联系方式与我交流相关技术问题
+Jamling，男，正式的职业为一名Java/Android软件工程师，您可以通过以下联系方式与我交流相关技术问题
  * QQ群：629153672（Android快速开发框架及支付sdk群）；307490913（SmartIM及其插件使用问题）
  * Email: <a href="mailto:li.jaming@gmail.com" title="li.jaming@gmail.com">li.jaming@gmail.com</a>
  * Github: https://github.com/Jamling

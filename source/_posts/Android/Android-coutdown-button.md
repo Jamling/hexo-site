@@ -133,7 +133,7 @@ public class CountDownButton extends RoundButton {
 
 ## 布局
 
-```xml
+``` xml
 <cn.ieclipse.af.view.CountDownButton
     android:id="@+id/btn2"
     android:layout_width="wrap_content"
@@ -152,7 +152,7 @@ public class CountDownButton extends RoundButton {
 
 ## Activity中使用
 
-```java
+``` java
 myBtn2 = (CountDownButton) btn2;
 // btn2 text: enable: white; normal: gray
 ColorStateList csl2 = new ColorStateList(new int[][]{{android.R.attr.state_enabled}, {}},
